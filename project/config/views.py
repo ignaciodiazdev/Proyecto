@@ -25,6 +25,30 @@ def probando_template(request):
     mi_documento = mi_template.render(mi_contexto)
     return HttpResponse(mi_documento)
 
+
+def fecha_hora(request):
+    from datetime import datetime
+    ahora = datetime.now()
+    return HttpResponse(f"<h1>⌛Fecha y Hora: {ahora: %d/%m/%Y %H:%M:%S.%f}</h1>")
+
+
+def mis_notas(request):
+    lista_de_notas = [10, 12, 9, 18, 20, 15]
+    lista_de_notas.sort(reverse=True)
+    contexto = {
+        "notas": lista_de_notas
+    }
+    return render(request, "notas.html", contexto)
+
+
+def ver_persona(request):
+    formulario = {
+        "persona": {
+            "nombre": "Hugo",
+            "edad": 38,
+        }
+    }
+    return render(request, "personas.html", context=formulario)
 # def nombre(request, nombre: str, apellido: str):
 
 #     context = {
